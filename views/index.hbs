@@ -21,15 +21,12 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect("http://192.168.200.46:8080");
   socket.on("news", function (data) {
     console.log("news channel", data);
     const chat = document.getElementById("chat");
     const message = document.createElement("div");
     message.innerHTML = data;
     chat.appendChild(message);
-
-    // socket.emit('my other event', { my: 'data' });
   });
 
   const form = document.getElementById("form");

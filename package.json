@@ -23,8 +23,12 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "knex": "^0.16.3",
+<<<<<<< HEAD
     "pg": "^7.9.0",
     "socket.io": "^2.2.0",
     "sqlite3": "^4.0.6"
+=======
+    "socket.io": "^2.2.0"
+>>>>>>> 8f9290914b435eb11e48f4bd9bdd386c315bb0b1
   }
 }
