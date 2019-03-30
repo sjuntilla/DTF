@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input name="msg" id="msg" type="text" />
+        <input type="submit" />
+    </form>
+    <div id="chat"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://192.168.200.221:8089');
+        socket.on('news', function (data) {
+            console.log('news channel', data);
+            const chat = document.getElementById('chat');
+            const message = document.createElement('div');
+            message.innerHTML = data;
+            chat.appendChild(message);
+
+            // socket.emit('my other event', { my: 'data' });
+        });
+
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const msg = e.target[0].value;
+            socket.emit('fromClient', msg);
+        });
+    </script>
+</body>
+
+</html>
