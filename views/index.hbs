@@ -1,0 +1,46 @@
+<form id="form">
+  <input name="msg" id="msg" type="text" />
+  <input type="submit" />
+</form>
+<div id="chat"></div>
+
+<script>
+  function locator() {
+    if ("geolocation" in navigator) {
+      console.log("sending gps");
+      navigator.geolocation.getCurrentPosition(function (position) {
+        //   sendIt(position.coords.latitude, position.coords.longitude);
+        console.log(position.coords.latitude, position.coords.longitude);
+
+      });
+    } else {
+      console.log("you suck");
+    }
+  }
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect("http://192.168.200.46:8080");
+  socket.on("news", function (data) {
+    console.log("news channel", data);
+    const chat = document.getElementById("chat");
+    const message = document.createElement("div");
+    message.innerHTML = data;
+    chat.appendChild(message);
+
+    // socket.emit('my other event', { my: 'data' });
+  });
+
+  const form = document.getElementById("form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const msg = e.target[0].value;
+    socket.emit("fromClient", msg);
+  });
+</script>
+
+<button id='location' onclick="locator()">
+  location
+</button>
