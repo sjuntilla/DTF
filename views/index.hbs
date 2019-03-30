@@ -33,6 +33,7 @@
       console.log("sending gps");
       navigator.geolocation.getCurrentPosition(function (position) {
         //   sendIt(position.coords.latitude, position.coords.longitude);
+        L.marker(position.coords.latitude, position.coords.longitude).addTo(mymap);
         console.log(position.coords.latitude, position.coords.longitude);
 
       });
