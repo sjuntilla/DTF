@@ -13,6 +13,7 @@
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
+
 </script>
 
 <form id="form">
@@ -27,6 +28,7 @@
       console.log("sending gps");
       navigator.geolocation.getCurrentPosition(function (position) {
         //   sendIt(position.coords.latitude, position.coords.longitude);
+        L.marker(position.coords.latitude, position.coords.longitude).addTo(mymap);
         console.log(position.coords.latitude, position.coords.longitude);
 
       });

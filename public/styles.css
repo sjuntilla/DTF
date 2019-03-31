@@ -1,3 +1,8 @@
- #mapid {
-    height: 180px;
-  }
+ body {
+   background-color: #26251C;
+ }
+
+ #map {
+   height: 400px;
+   width: 100%;
+ }
