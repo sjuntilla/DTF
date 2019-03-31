@@ -15,20 +15,14 @@
   }).addTo(mymap);
 </script>
 
-<style>
-  #mapid {
-    height: 600px;
-  }
-</style>
-
-<h1>Down To Fight</h1>
-
-
-<form id="form">
-  <input name="msg" id="msg" type="text" />
-  <input type="submit" />
-</form>
 <div id="chat"></div>
+<div id="formdiv">
+  <form id="form">
+    <input name="msg" id="msg" type="text" />
+    <input type="submit" />
+    <button id='location' onclick="locator()">location</button>
+  </form>
+</div>
 
 <script>
   let lat = 21.2968981;
@@ -70,7 +64,3 @@
     socket.emit("fromClient", msg);
   });
 </script>
-
-<button id='location' onclick="locator()">
-  location
-</button>
