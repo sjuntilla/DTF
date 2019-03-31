@@ -1,8 +1,15 @@
  body {
    background-color: #26251C;
+   color: #EB0A44;
  }
 
- #map {
+ #mapid {
    height: 400px;
    width: 100%;
+ }
+
+ input {
+   background-color: #26251C;
+   border: 1px solid #F2A73D;
+   color: #F2643D;
  }
