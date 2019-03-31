@@ -5,6 +5,10 @@
    text-decoration: none;
  }
 
+ a:hover {
+   color: #FC9D9A;
+ }
+
  body {
    display: flex;
    flex-flow: column nowrap;
