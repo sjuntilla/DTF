@@ -14,15 +14,20 @@
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
 </script>
-
-<div id="chat"></div>
-<div id="formdiv">
-  <form id="form">
-    <input name="msg" id="msg" type="text" />
-    <input type="submit" />
-    <button id='location' onclick="locator()">location</button>
-  </form>
+<div id="side">
+  <div id="chat">
+    <p class="chat"><b>weedluvr420</b>: ay fuk u @kittydestroyah45</p>
+    <p class="chat"><b>360noscope6969</b>: lololololol</p>
+  </div>
+  <div id="formdiv">
+    <form id="form">
+      <input name="msg" id="msg" type="text" />
+      <input type="submit" />
+      <button id='location' onclick="locator()">location</button>
+    </form>
+  </div>
 </div>
+
 
 <script>
   let lat = 21.2968981;
@@ -49,9 +54,8 @@
 <script>
   var socket = io.connect('http://localhost:8080');
   socket.on("news", function (data) {
-    console.log("news channel", data);
     const chat = document.getElementById("chat");
-    const message = document.createElement("div");
+    const message = document.createElement("p");
     message.innerHTML = data;
     chat.appendChild(message);
   });
