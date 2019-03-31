@@ -1,9 +1,14 @@
+ @import url('https://fonts.googleapis.com/css?family=Karla');
+
  body {
+   display: flex;
+   flex-flow: column nowrap;
+   font-family: 'Karla', 'sans-serif';
    background-color: #26251C;
    color: #EB0A44;
  }
 
- #map {
+ #mapid {
    height: 400px;
    width: 100%;
  }
@@ -12,4 +17,16 @@
    background-color: #26251C;
    border: 1px solid #F2A73D;
    color: #F2643D;
+   margin: 5px;
+   padding: 5px;
+   font-size: 20px;
+   height: 50px;
+   width: 200px;
+ }
+
+ ;
+
+ button {
+   background-color: #26251C;
+   font-size: 20px;
  }
