@@ -8,44 +8,25 @@
 
 <div id="mapid"></div>
 
-
-
-
-<script>
-  //dummy data
-
-  const seedData = [{
-    name: "FUCKING FIGHT",
-    latitude: 21.2968981,
-    longitude: -157.8566531
-
-  }, {
-    name: "CHICK FIGHT",
-    latitude: 21.35,
-    longitude: -157.83
-  }]
-
-</script>
-
 <script>
   var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
-
-  seedData.forEach(obj => {
-    let lat = obj.latitude;
-    let long = obj.longitude;
-    let name = obj.name;
-    L.marker([lat, long]).addTo(mymap).bindPopup(name).openPopup();
-  })
-
-
 </script>
 <div id="side">
   <div id="chat">
     <p class="chat"><b>weedluvr420</b>: ay fuk u @kittydestroyah45</p>
     <p class="chat"><b>360noscope6969</b>: lololololol</p>
+    <p class="chat"><b>F1GHTCLU8KW33N</b>: comen getit fahkas</p>
+    <p class="chat"><b>t0ughGURL</b>: lets go! im ready ur scurd</p>
+    <p class="chat"><b>j0hnnyBrav0</b>: yah knw ya want it</p>
+    <p class="chat"><b>P0w3rPoofGal</b>: where n whenn</p>
+    <p class="chat"><b>r0nm0n</b>: lets meet @urMOMS</p>
+    <p class="chat"><b>slyth3r1n</b>: curses!! blast y00s</p>
+    <p class="chat"><b>grandMAsBoi</b>: ya'll gonna learn</p>
+    <p class="chat"><b>tw3rk1T</b>: yous cant handle dis</p>
+    <p class="chat"><b>k1LLB1LL</b>: lmk ill b there</p>
   </div>
   <div id="formdiv">
     <form id="form">
@@ -94,4 +75,8 @@
     const msg = e.target[0].value;
     socket.emit("fromClient", msg);
   });
+</script>
+
+<script>
+
 </script>
