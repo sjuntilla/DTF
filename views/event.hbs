@@ -1,3 +1,26 @@
+<div id="mapid"></div>
+<div id="side">
+    <form action="/event" method="POST" id="events">
+        <input type="text" name="name" placeholder="name" required><br />
+
+        <select name="event" id="event" required><br />
+            <option value="fight">Fight</option>
+            <option value="fuck">Fuck</option>
+            <option value="drink">Drink</option>
+            <option value="basketball">Basketball Pickup</option>
+            <option value="tickle">Tickle</option>
+        </select>
+        <input type="description" name="description" placeholder="description" required><br />
+        <input type="number" name="lat" id="lat" placeholder="latitude" required><br />
+        <input type="number" name="long" id="long" placeholder="longitude" required><br />
+        <input type="submit" name="submit">
+    </form>
+    <button id="comeHere" onclick="comeHere()">
+        Set as My Current Location
+    </button>
+</div>
+
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
     crossorigin="" />
@@ -5,26 +28,6 @@
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
     integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
     crossorigin=""></script>
-
-
-
-<form action="/event" method="POST">
-    <input type="text" name="name" placeholder="name" required><br />
-
-    <select name="event" id="event" required>
-        <option value="fight">Fight</option>
-        <option value="fuck">Fuck</option>
-        <option value="drink">Drink</option>
-        <option value="basketball">Basketball Pickup</option>
-        <option value="tickle">Tickle</option>
-    </select>
-    <input type="description" name="description" placeholder="description" required>
-    <input type="number" name="lat" id="lat" placeholder="latitude" required>
-    <input type="number" name="long" id="long" placeholder="longitude" required>
-    <input type="submit" name="submit">
-</form>
-
-<div id="mapid"></div>
 
 <script>
     var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
@@ -48,22 +51,7 @@
 
     }
     mymap.on('click', onMapClick);
-
-
-
 </script>
-
-<style>
-    #mapid {
-        height: 600px;
-    }
-</style>
-
-<div id="buttonContainer">
-    <button id="comeHere" onclick="comeHere()">
-        Set as My Current Location
-    </button>
-</div>
 
 
 <script>
