@@ -1,8 +1,10 @@
 const app = require("express")();
+const express = require('express');
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 const hbs = require("express-handlebars");
+const fs = require('fs');
 
 const events = require('./routes/events.js')
 
@@ -34,6 +36,15 @@ io.on("connection", function (socket) {
   });
 });
 
+app.get("/public/styles.css", (req, res) => {
+  fs.readFile("./public/styles.css", (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    res.write(data.toString());
+    res.end();
+  });
+});
 app.get("/", (req, res) => {
   res.render("index");
 });
