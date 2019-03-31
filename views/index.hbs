@@ -8,11 +8,39 @@
 
 <div id="mapid"></div>
 
+
+
+
+<script>
+  //dummy data
+
+  const seedData = [{
+    name: "FUCKING FIGHT",
+    latitude: 21.2968981,
+    longitude: -157.8566531
+
+  }, {
+    name: "CHICK FIGHT",
+    latitude: 21.35,
+    longitude: -157.83
+  }]
+
+</script>
+
 <script>
   var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
+
+  seedData.forEach(obj => {
+    let lat = obj.latitude;
+    let long = obj.longitude;
+    let name = obj.name;
+    L.marker([lat, long]).addTo(mymap).bindPopup(name).openPopup();
+  })
+
+
 </script>
 
 <style>
