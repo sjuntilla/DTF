@@ -9,7 +9,7 @@
 <div id="mapid"></div>
 
 <script>
-  var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+  var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
@@ -17,9 +17,12 @@
 
 <style>
   #mapid {
-    height: 180px;
+    height: 600px;
   }
 </style>
+
+<h1>Down To Fight</h1>
+
 
 <form id="form">
   <input name="msg" id="msg" type="text" />
@@ -28,13 +31,18 @@
 <div id="chat"></div>
 
 <script>
+  let lat = 21.2968981;
+  let long = -157.8566376
   function locator() {
     if ("geolocation" in navigator) {
       console.log("sending gps");
       navigator.geolocation.getCurrentPosition(function (position) {
         //   sendIt(position.coords.latitude, position.coords.longitude);
-        L.marker(position.coords.latitude, position.coords.longitude).addTo(mymap);
+        if (position) {
+          console.log(position)
+        }
         console.log(position.coords.latitude, position.coords.longitude);
+        L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
       });
     } else {
@@ -45,6 +53,7 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
+  var socket = io.connect('http://localhost:8080');
   socket.on("news", function (data) {
     console.log("news channel", data);
     const chat = document.getElementById("chat");
