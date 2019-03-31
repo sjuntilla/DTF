@@ -9,10 +9,11 @@ const knex = require("../database/knex.js");
 
 //for testing
 router.get("/", (req, res) => {
-  res.render("event");
+    res.render("event");
 });
 router.post("/", (req, res) => {
-  console.log(req.body);
+    console.log(req.body);
 });
+
 
 module.exports = router;
