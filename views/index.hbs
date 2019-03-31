@@ -16,11 +16,13 @@
 
   const seedData = [{
     name: "FUCKING FIGHT",
+    event: "Fight",
     latitude: 21.2968981,
     longitude: -157.8566531
 
   }, {
     name: "CHICK FIGHT",
+    event: "Fight",
     latitude: 21.35,
     longitude: -157.83
   }]
@@ -37,6 +39,7 @@
     let lat = obj.latitude;
     let long = obj.longitude;
     let name = obj.name;
+
     L.marker([lat, long]).addTo(mymap).bindPopup(name).openPopup();
   })
 
@@ -96,3 +99,19 @@
     socket.emit("fromClient", msg);
   });
 </script>
+
+
+<script>
+  function onClick() {
+    console.log(mymap)
+    if (marker) {
+
+      //mymap.removeLayer(marker);
+    }
+  }
+
+</script>
+
+<button id="clearMarkers" onclick="onClick()">
+  Clear
+</button>
