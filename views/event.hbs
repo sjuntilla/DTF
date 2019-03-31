@@ -1,3 +1,13 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin="" />
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+    crossorigin=""></script>
+
+
+
 <form action="/event" method="POST">
     <input type="text" name="name" placeholder="name" required><br />
     <input type="text" name="event" placeholder="event" required><br />
@@ -5,32 +15,40 @@
     <input type="submit" name="submit">
 </form>
 
+<div id="mapid"></div>
+
+<script>
+    var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+</script>
+
+<style>
+    #mapid {
+        height: 600px;
+    }
+</style>
+
 
 
 <script>
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    let lat = 21.2968981;
+    let long = -157.8566376
+    function locator() {
+        if ("geolocation" in navigator) {
+            console.log("sending gps");
+            navigator.geolocation.getCurrentPosition(function (position) {
+                //   sendIt(position.coords.latitude, position.coords.longitude);
+                if (position) {
+                    console.log(position)
+                }
+                console.log(position.coords.latitude, position.coords.longitude);
+                L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+            });
+        } else {
+            console.log("you suck");
+        }
+    }
 </script>
-<div id="map"></div>
-{{!-- <div id="map" class="map"></div>
-    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script> --}}
-
-{{!-- <script type="text/javascript">
-    var map = new ol.Map({
-        target: 'map',
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.OSM()
-            })
-        ],
-        view: new ol.View({
-            center: ol.proj.fromLonLat([-157.8556764, 21.304547]),
-            zoom: 13
-        })
-    });
-
-
-</script> --}}
