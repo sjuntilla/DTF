@@ -1,5 +1,10 @@
  @import url('https://fonts.googleapis.com/css?family=Karla|Lobster');
 
+ a {
+   color: #EB0A44;
+   text-decoration: none;
+ }
+
  body {
    display: flex;
    flex-flow: column nowrap;
@@ -69,11 +74,20 @@
    text-shadow: 0px 1px 0px rgba(225, 225, 225, 0.55);
  }
 
- form {
+ /* form {
    display: flex;
-   justify-content: center;
+   flex-direction: column wrap;
    margin: 10px;
    width: 200px;
+ } */
+
+ /* form#events {
+    display: flex;
+    flex-direction: column nowrap;
+  } */
+
+ #buttonContainer {
+   width: 150px;
  }
 
  #formdiv {
