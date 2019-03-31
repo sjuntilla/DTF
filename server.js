@@ -4,14 +4,17 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 const hbs = require("express-handlebars");
+const eventRoute = require("./routes/events");
 const fs = require('fs');
 
-const events = require('./routes/events.js')
+const events = require("./routes/events.js");
 
 server.listen(8080);
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 app.use(bodyParser.json());
 app.engine(
   "hbs",
@@ -20,6 +23,7 @@ app.engine(
     extname: "hbs"
   })
 );
+app.use("/events", eventRoute);
 app.set("view engine", "hbs");
 
 io.on("connection", function (socket) {
@@ -48,7 +52,3 @@ app.get("/public/styles.css", (req, res) => {
 app.get("/", (req, res) => {
   res.render("index");
 });
-
-app.get('/event', (req, res) => {
-  res.render('event', events);
-})

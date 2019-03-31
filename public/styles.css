@@ -1,15 +1,101 @@
+ @import url('https://fonts.googleapis.com/css?family=Karla|Lobster');
+
  body {
+   display: flex;
+   flex-flow: column nowrap;
+   align-items: center;
+   align-content: center;
+   font-family: 'Karla', sans-serif;
    background-color: #26251C;
+   color: rgb(110, 6, 32);
+ }
+
+ b {
    color: #EB0A44;
+   text-transform: uppercase;
  }
 
- #map {
-   height: 400px;
+ #first {
    width: 100%;
+   height: 100%;
  }
 
+ .chat {
+   font-size: 15px;
+ }
+
+ #chat {
+   display: flex;
+   flex-flow: column nowrap;
+   align-content: flex-start;
+   justify-content: start;
+   width: 300px;
+   height: 550px;
+   text-align: justify;
+ }
+
+ #side {
+   display: flex;
+   flex-flow: column nowrap;
+ }
+
+ #wrapper {
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: center;
+   align-content: center;
+ }
+
+ #header {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #EB0A44;
+   width: 100%;
+   height: 150px;
+ }
+
+ #mapid {
+   height: 600px;
+   width: 800px;
+   border-radius: 10px;
+   margin: 10px;
+ }
+
+ h1 {
+   font-family: 'Lobster', cursive;
+   font-size: 100px;
+   font-weight: bold;
+   text-shadow: 0px 1px 0px rgba(225, 225, 225, 0.55);
+ }
+
+ form {
+   display: flex;
+   justify-content: center;
+   margin: 10px;
+   width: 200px;
+ }
+
+ #formdiv {
+   width: 200px;
+ }
+
+ p {
+   display: flex;
+   justify-content: center;
+   color: #FC9D9A;
+   font-family: 'Karla', sans-serif;
+   font-size: 20px;
+ }
+
+ button,
  input {
    background-color: #26251C;
-   border: 1px solid #F2A73D;
-   color: #F2643D;
+   color: #EB0A44;
+   border: 1px solid #EB0A44;
+   border-radius: 5px;
+   font-size: 10px;
+   font-family: 'Karla', sans-serif;
+   height: 20px;
+   margin: 2px;
  }

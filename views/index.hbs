@@ -9,32 +9,39 @@
 <div id="mapid"></div>
 
 <script>
-  var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+  var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
 </script>
+<div id="side">
+  <div id="chat">
+    <p class="chat"><b>weedluvr420</b>: ay fuk u @kittydestroyah45</p>
+    <p class="chat"><b>360noscope6969</b>: lololololol</p>
+  </div>
+  <div id="formdiv">
+    <form id="form">
+      <input name="msg" id="msg" type="text" />
+      <input type="submit" />
+      <button id='location' onclick="locator()">location</button>
+    </form>
+  </div>
+</div>
 
-<style>
-  #mapid {
-    height: 180px;
-  }
-</style>
-
-<form id="form">
-  <input name="msg" id="msg" type="text" />
-  <input type="submit" />
-</form>
-<div id="chat"></div>
 
 <script>
+  let lat = 21.2968981;
+  let long = -157.8566376
   function locator() {
     if ("geolocation" in navigator) {
       console.log("sending gps");
       navigator.geolocation.getCurrentPosition(function (position) {
         //   sendIt(position.coords.latitude, position.coords.longitude);
-        L.marker(position.coords.latitude, position.coords.longitude).addTo(mymap);
+        if (position) {
+          console.log(position)
+        }
         console.log(position.coords.latitude, position.coords.longitude);
+        L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
       });
     } else {
@@ -45,10 +52,10 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
+  var socket = io.connect('http://localhost:8080');
   socket.on("news", function (data) {
-    console.log("news channel", data);
     const chat = document.getElementById("chat");
-    const message = document.createElement("div");
+    const message = document.createElement("p");
     message.innerHTML = data;
     chat.appendChild(message);
   });
@@ -61,7 +68,3 @@
     socket.emit("fromClient", msg);
   });
 </script>
-
-<button id='location' onclick="locator()">
-  location
-</button>
