@@ -9,9 +9,19 @@
 
 
 <form action="/event" method="POST">
-    <input type="text" name="name" placeholder="name" required>
-    <input type="text" name="event" placeholder="event" required>
-    <input type="text" name="description" placeholder="description" required>
+
+    <input type="text" name="name" placeholder="name" required><br />
+
+    <select name="event" id="event" required>
+        <option value="fight">Fight</option>
+        <option value="fuck">Fuck</option>
+        <option value="drink">Drink</option>
+        <option value="basketball">Basketball Pickup</option>
+        <option value="tickle">Tickle</option>
+    </select>
+    <input type="description" name="description" placeholder="description" required>
+    <input type="number" name="lat" id="lat" placeholder="latitude" required>
+    <input type="number" name="long" id="long" placeholder="longitude" required>
     <input type="submit" name="submit">
 </form>
 
@@ -22,6 +32,26 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
+
+    var popup = L.popup();
+    function onMapClick(e) {
+        popup.setLatLng(e.latlng).setContent("Fight Here " + e.latlng.toString()).openOn(mymap);
+
+        let coords = e.latlng.toString();
+        let splitMe = coords.split("(");
+        console.log(splitMe[1])
+        let latter = Number(splitMe[1].split(",")[0])
+        let longer = splitMe[1].split(",")[1].substring(1).slice(0, -1)
+        let latitude = document.getElementById("lat");
+        let longitude = document.getElementById("long")
+        latitude.value = latter;
+        longitude.value = longer
+
+    }
+    mymap.on('click', onMapClick);
+
+
+
 </script>
 
 <style>
@@ -30,7 +60,35 @@
     }
 </style>
 
+<div id="buttonContainer">
+    <button id="comeHere" onclick="comeHere()">
+        Set as My Current Location
+    </button>
+</div>
 
+
+<script>
+    function comeHere() {
+        if ("geolocation" in navigator) {
+            console.log("sending gps");
+            navigator.geolocation.getCurrentPosition(function (position) {
+                //   sendIt(position.coords.latitude, position.coords.longitude);
+                if (position) {
+                    console.log(position)
+                }
+                console.log(position.coords.latitude, position.coords.longitude);
+                L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+                let latitude = document.getElementById("lat");
+                let longitude = document.getElementById('long')
+                latitude.value = position.coords.latitude;
+                longitude.value = position.coords.longitude;
+
+            });
+        } else {
+            console.log("you suck");
+        }
+    }
+</script>
 
 <script>
     let lat = 21.2968981;
