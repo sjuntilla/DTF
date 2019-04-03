@@ -9,10 +9,49 @@
 <div id="mapid"></div>
 
 <script>
+
+  //sets map to default to Honolulu Hawaii
   var mymap = L.map('mapid').setView([21.2968981, -157.8566376], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mymap);
+  let lat = 21.2968981;
+  let long = -157.8566376
+
+  //function to find current position of client
+  function locator() {
+    if ("geolocation" in navigator) {
+      console.log("sending gps");
+      navigator.geolocation.getCurrentPosition(function (position) {
+        //   sendIt(position.coords.latitude, position.coords.longitude);
+        if (position) {
+          console.log(position)
+        }
+        console.log(position.coords.latitude, position.coords.longitude);
+        L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+
+      });
+    } else {
+      console.log("you suck");
+    }
+  }
+
+  //chat box javascript
+  var socket = io.connect('http://localhost:8080');
+  socket.on("news", function (data) {
+    const chat = document.getElementById("chat");
+    const message = document.createElement("p");
+    message.innerHTML = data;
+    chat.appendChild(message);
+  });
+
+  const form = document.getElementById("form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const msg = e.target[0].value;
+    socket.emit("fromClient", msg);
+  });
 </script>
 <div id="side">
   <div id="chat">
@@ -37,46 +76,6 @@
 </div>
 
 
-<script>
-  let lat = 21.2968981;
-  let long = -157.8566376
-  function locator() {
-    if ("geolocation" in navigator) {
-      console.log("sending gps");
-      navigator.geolocation.getCurrentPosition(function (position) {
-        //   sendIt(position.coords.latitude, position.coords.longitude);
-        if (position) {
-          console.log(position)
-        }
-        console.log(position.coords.latitude, position.coords.longitude);
-        L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
-      });
-    } else {
-      console.log("you suck");
-    }
-  }
-</script>
 
 <script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io.connect('http://localhost:8080');
-  socket.on("news", function (data) {
-    const chat = document.getElementById("chat");
-    const message = document.createElement("p");
-    message.innerHTML = data;
-    chat.appendChild(message);
-  });
-
-  const form = document.getElementById("form");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const msg = e.target[0].value;
-    socket.emit("fromClient", msg);
-  });
-</script>
-
-<script>
-
-</script>
